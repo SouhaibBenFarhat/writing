@@ -135,6 +135,14 @@ def extract_body(text: str, rule: str) -> str:
     raise ValueError(f"unknown rule {rule!r}")
 
 
+def attr(text: str) -> str:
+    """Escape for a double-quoted HTML attribute: &, <, >, and " — but NOT the
+    apostrophe. In a double-quoted attribute ' is already safe, and emitting it as
+    &#x27; trips naive entity decoders downstream (e.g. a card reader that only
+    knows the decimal &#39;)."""
+    return html.escape(text, quote=False).replace('"', "&quot;")
+
+
 def inline(text: str) -> str:
     """Escape HTML, then apply the small subset of Markdown inline syntax."""
     text = fold_bold_glyphs(text)
@@ -204,8 +212,8 @@ def page(article: dict) -> str:
     prose = md_to_html(body)
     title = html.escape(article["title"], quote=False)
     dek = html.escape(article["dek"], quote=False)
-    t_attr = html.escape(article["title"])
-    d_attr = html.escape(article["dek"])
+    t_attr = attr(article["title"])
+    d_attr = attr(article["dek"])
     slug = article["slug"]
     og_image = f"{SITE_URL}/og/{slug}.png"
     return f"""<!doctype html>
