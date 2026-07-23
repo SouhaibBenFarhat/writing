@@ -1,0 +1,50 @@
+name: OG images
+
+# Regenerate a share card for every article whenever pages change on main.
+# The images are derived from each page's og:title / og:description, so they
+# always match what's published. Commits made here use GITHUB_TOKEN, which does
+# not retrigger workflows — no loop.
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'og/**'
+      - '**.md'
+      - 'LICENSE'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: og-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  og:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Pillow
+        run: pip install "pillow==12.3.0"
+
+      - name: Generate OG images
+        run: python og.py
+
+      - name: Commit regenerated images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add og/
+          if git diff --cached --quiet; then
+            echo "OG images unchanged — nothing to commit."
+          else
+            git commit -m "chore: regenerate OG images [skip ci]"
+            git push
+          fi

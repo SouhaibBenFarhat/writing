@@ -18,6 +18,7 @@ SRC = Path.home() / "Desktop"
 OUT = Path(__file__).resolve().parent
 
 SITE_NAME = "Souhaib Ben Farhat"
+SITE_URL = "https://souhaibbenfarhat.github.io/writing"  # absolute base for OG tags
 PORTFOLIO_URL = "../"  # served at github.io/writing/ -> ".." is the portfolio root
 
 # --- article registry: newest first -----------------------------------------
@@ -203,13 +204,31 @@ def page(article: dict) -> str:
     prose = md_to_html(body)
     title = html.escape(article["title"], quote=False)
     dek = html.escape(article["dek"], quote=False)
+    t_attr = html.escape(article["title"])
+    d_attr = html.escape(article["dek"])
+    slug = article["slug"]
+    og_image = f"{SITE_URL}/og/{slug}.png"
     return f"""<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title} — {SITE_NAME}</title>
-  <meta name="description" content="{dek}" />
+  <meta name="description" content="{d_attr}" />
+  <link rel="canonical" href="{SITE_URL}/{slug}.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="{SITE_NAME}" />
+  <meta property="og:title" content="{t_attr}" />
+  <meta property="og:description" content="{d_attr}" />
+  <meta property="og:url" content="{SITE_URL}/{slug}.html" />
+  <meta property="og:image" content="{og_image}" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="{t_attr}" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{t_attr}" />
+  <meta name="twitter:description" content="{d_attr}" />
+  <meta name="twitter:image" content="{og_image}" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -252,6 +271,17 @@ def index() -> str:
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Writing — {SITE_NAME}</title>
   <meta name="description" content="Essays on AI, abstraction, incentives, and engineering judgment." />
+  <link rel="canonical" href="{SITE_URL}/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="{SITE_NAME}" />
+  <meta property="og:title" content="Writing — {SITE_NAME}" />
+  <meta property="og:description" content="Essays on AI, abstraction, incentives, and engineering judgment." />
+  <meta property="og:url" content="{SITE_URL}/" />
+  <meta property="og:image" content="{SITE_URL}/og/index.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="{SITE_URL}/og/index.png" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
