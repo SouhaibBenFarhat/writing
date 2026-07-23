@@ -2,9 +2,12 @@
 """Generate Open Graph share images (1200x630) for every page.
 
 Reads the og:title / og:description already baked into each *.html by build.py,
-so the cards always match what is actually published, and this script needs
-nothing but Pillow — no imports from build.py, no source markdown. One card per
-HTML page lands in og/<slug>.png, referenced by that page's og:image tag.
+so the cards always match what is published, and this script needs nothing but
+Pillow — no imports from build.py, no source markdown.
+
+Each page yields two cards: a dark one at og/<slug>.png (the canonical og:image
+social platforms use — one static image, since feeds can't pick a theme) and a
+light one at og/<slug>-light.png, which the portfolio swaps to in light mode.
 
 Run locally or in CI:  python3 og.py
 """
@@ -24,12 +27,17 @@ W, H = 1200, 630
 MARGIN = 92
 CW = W - 2 * MARGIN
 
-# palette — the site's dark theme
-BG = (23, 24, 26)
-INK = (236, 234, 227)
-DEK = (176, 175, 167)
-MUTED = (139, 138, 130)
-RULE = (52, 51, 47)
+# palettes — mirror the site's dark and light themes
+PALETTES = {
+    "dark": {
+        "bg": (23, 24, 26), "ink": (236, 234, 227),
+        "dek": (176, 175, 167), "muted": (139, 138, 130), "rule": (52, 51, 47),
+    },
+    "light": {
+        "bg": (252, 252, 251), "ink": (28, 28, 26),
+        "dek": (85, 85, 79), "muted": (118, 118, 110), "rule": (216, 216, 209),
+    },
+}
 
 
 def font(name: str, size: int) -> ImageFont.FreeTypeFont:
@@ -78,15 +86,15 @@ def draw_tracked(d: ImageDraw.ImageDraw, xy, text: str, f, fill, tracking: float
         x += f.getlength(ch) + tracking
 
 
-def card(title: str, dek: str, eyebrow: str, out_path: Path,
+def card(title: str, dek: str, eyebrow: str, out_path: Path, pal: dict,
          title_max_lines: int = 3, title_hi: int = 82, title_lo: int = 50) -> None:
-    img = Image.new("RGB", (W, H), BG)
+    img = Image.new("RGB", (W, H), pal["bg"])
     d = ImageDraw.Draw(img)
 
     sans = font("PTSans-Bold.ttf", 23)
     italic = font("PTSerif-Italic.ttf", 31)
 
-    draw_tracked(d, (MARGIN, 84), eyebrow.upper(), sans, MUTED, tracking=3.5)
+    draw_tracked(d, (MARGIN, 84), eyebrow.upper(), sans, pal["muted"], tracking=3.5)
 
     tf, tlines = fit(title, "PTSerif-Bold.ttf", CW, title_max_lines, title_hi, title_lo)
     tlh = line_h(tf)
@@ -99,38 +107,43 @@ def card(title: str, dek: str, eyebrow: str, out_path: Path,
 
     y = top
     for ln in tlines:
-        d.text((MARGIN, y), ln, font=tf, fill=INK)
+        d.text((MARGIN, y), ln, font=tf, fill=pal["ink"])
         y += tlh
     y += gap
     for ln in dek_lines:
-        d.text((MARGIN, y), ln, font=italic, fill=DEK)
+        d.text((MARGIN, y), ln, font=italic, fill=pal["dek"])
         y += dlh
 
-    d.line([(MARGIN, 548), (W - MARGIN, 548)], fill=RULE, width=1)
-    draw_tracked(d, (MARGIN, 568), "souhaibbenfarhat.github.io/writing", sans, MUTED, tracking=1.0)
+    d.line([(MARGIN, 548), (W - MARGIN, 548)], fill=pal["rule"], width=1)
+    draw_tracked(d, (MARGIN, 568), "souhaibbenfarhat.github.io/writing", sans, pal["muted"], tracking=1.0)
 
     OGDIR.mkdir(exist_ok=True)
     img.save(out_path, "PNG")
 
 
+def render(slug: str, title: str, dek: str, eyebrow: str, **kw) -> None:
+    """One card per theme: <slug>.png (dark, canonical) and <slug>-light.png."""
+    for theme, pal in PALETTES.items():
+        suffix = "" if theme == "dark" else "-light"
+        card(title, dek, eyebrow, OGDIR / f"{slug}{suffix}.png", pal, **kw)
+        print(f"  og/{slug}{suffix}.png")
+
+
 def main() -> None:
-    pages = sorted(p for p in OUT.glob("*.html"))
-    count = 0
+    pages = sorted(OUT.glob("*.html"))
+    n = 0
     for page in pages:
         slug = page.stem
         src = page.read_text(encoding="utf-8")
         dek = meta(src, "og:description")
         if slug == "index":
-            card("Writing", dek, SITE_NAME, OGDIR / "index.png",
-                 title_max_lines=1, title_hi=140, title_lo=90)
+            render(slug, "Writing", dek, SITE_NAME, title_max_lines=1, title_hi=140, title_lo=90)
+        elif (title := meta(src, "og:title")):
+            render(slug, title, dek, f"{SITE_NAME} · Writing")
         else:
-            title = meta(src, "og:title")
-            if not title:
-                continue
-            card(title, dek, f"{SITE_NAME} · Writing", OGDIR / f"{slug}.png")
-        count += 1
-        print(f"  og/{slug}.png")
-    print(f"Done — {count} OG images in {OGDIR}")
+            continue
+        n += 1
+    print(f"Done — {n} pages × {len(PALETTES)} themes = {n * len(PALETTES)} images in {OGDIR}")
 
 
 if __name__ == "__main__":
