@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Is the Highest Abstraction Engineering Has Ever Built — Souhaib Ben Farhat</title>
+  <meta name="description" content="A reasoning journey — from a stranger's comment to something that finally held up." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="site article">
+    <nav class="topnav">
+      <a href="index.html">← Writing</a>
+      <a href="../">Portfolio</a>
+    </nav>
+    <header>
+      <h1>AI Is the Highest Abstraction Engineering Has Ever Built</h1>
+      <p class="dek">A reasoning journey — from a stranger's comment to something that finally held up.</p>
+      <p class="meta">July 22, 2026 · Souhaib Ben Farhat</p>
+    </header>
+    <div class="prose">
+      <p>It started with a comment.</p>
+      <p>I'd posted something optimistic: that AI is no different from every technological leap before it, and the honest response to a threat is to learn to build it. A thoughtful engineer named Yuriy pushed back with a metaphor I couldn't shake.</p>
+      <p>Giant sequoias, he said, need fire to reproduce. The fire clears the old trees and cracks the cones open to release their seeds. The forest is renewed; the new trees may live three thousand years. <em>But in that analogy, you are one of the old trees. Your individual journey ends, even though the forest lives on. And a professional life is only so long.</em></p>
+      <p>It's a good argument — the honest kind. A field can flourish while a specific career inside it burns, and "the industry will be fine" is cold comfort to the person whose career is the one on fire.</p>
+      <p>So instead of defending my optimism, I decided to attack it. If it couldn't survive my own scrutiny, it didn't deserve to be posted. This is where that went.</p>
+      <h2>First, refuse both the doom and the cope</h2>
+      <p>Two lazy answers were on offer. One: <em>AI changes everything, we're finished.</em> The other: <em>AI is just autocomplete, nothing changes.</em> Both are comfortable. Both are ways of not thinking.</p>
+      <p>The cope is the sneakier one, because it feels clever. "It can't really think, it's just matching patterns." But that collapses the moment the thing does something genuinely useful — and it contradicts itself: if it's a trivial toy, why is the entire industry reorganizing around it?</p>
+      <p>To get anywhere real, I had to drop a level. Not <em>what will AI do to us</em> — but <em>what is it, actually?</em></p>
+      <h2>What an LLM actually is</h2>
+      <p>Strip the mystique and a language model is almost boring: text in, text out. A very large function. You hand it a sequence, it returns a likely continuation. No goals, no memory between calls, no stake in the result, no want. It doesn't feel the lack of something and reach for it, the way a person does. Left alone, it does exactly nothing.</p>
+      <p>Then you wrap it in an <em>agent</em> — a loop that feeds its output into tools, runs the command, reads the result, and calls it again. Now it acts. Now it "does things."</p>
+      <p>But look closely at the agent and the panic deflates: <strong>the agent is just code.</strong> Code a human wrote. The loop, the tools, the guardrails — engineering. And the model itself is the product of more engineering: data pipelines, training runs.</p>
+      <p>It's engineering all the way down. There is no hidden layer where a human quietly vanishes and a will takes over. Strip the code and the whole thing evaporates — no engine, no car, no driver.</p>
+      <p>Which flips the fear inside out. <strong>AI isn't a force that replaces engineers. It's a thing made entirely of engineering.</strong></p>
+      <h2>Why it's so good at code — and what that leaves for us</h2>
+      <p>If it's "just" prediction, why is it so unreasonably good at programming?</p>
+      <p>Because code has two properties most of the world lacks. It's <strong>patterned</strong> — most real software recombines shapes written a million times before. And it's <strong>verifiable</strong> — you can run it and see if it works. That's the whole reason machines raced ahead on code and math but not on taste or strategy: where there's a checkable right answer, a system can correct itself toward it.</p>
+      <p>So AI devours the part of programming that is patterned and checkable. What's left is the part that is neither — deciding what's worth building, choosing between two defensible designs, working out what a vague request actually means. That part has no pattern to match. That part is judgment. That part is you.</p>
+      <h2>We have done this before</h2>
+      <p>Every leap AI seems to threaten, the industry has already lived through — just one floor down.</p>
+      <p>We used to write assembly by hand, juggling registers and memory addresses. Then high-level languages arrived and a compiler did that translation for us. The assembly programmers didn't vanish; nearly all of them moved up a level, and the profession went from a small priesthood to tens of millions. A handful still write assembly today — for compilers, for drivers, for the places where every cycle counts — and that's the tell: the deep, judgment-heavy work stayed human. The rote translation got automated.</p>
+      <p>It kept happening. Frameworks did it to raw JavaScript and C# — nobody hand-rolls the plumbing anymore, and web development exploded instead of shrinking. The cloud did it to the sysadmin racking physical servers — that job didn't die, it became the cloud engineer orchestrating a hundred of them, and the field grew. Garbage collection did it to manual memory management. Each time, a layer of toil was abstracted away, the people doing it climbed to higher-value work, and the number of builders went <em>up</em>, not down.</p>
+      <p>AI is the same move, one more floor up. It abstracts the writing of the code the way the compiler abstracted the writing of assembly.</p>
+      <p>With one difference that matters — and it happens to be good news. Every abstraction before it was <em>deterministic</em>. You trust the compiler completely; you never read what it emits. AI is the first <em>probabilistic</em> one: an abstraction you cannot blindly trust, that hands you output you have to check. So unlike every layer before it, it doesn't let you stop thinking about the floor below. It lifts you up like all of them did — but it's the first that keeps your judgment in the loop by design.</p>
+      <p>Which is, quietly, the whole reason it can't replace you.</p>
+      <h2>The jobs question, taken apart</h2>
+      <p>That's the comforting version — and I've learned not to trust comforting versions. History rhymes, but "this time is different" is occasionally true, so I made myself keep going.</p>
+      <p>Here's where it got uncomfortable. "AI can't replace the engineer" does <em>not</em> automatically mean "AI won't touch engineering jobs." Those are two different claims, and I'd been quietly merging them.</p>
+      <p>AI doesn't need to replace a human to change the math. It replaces <em>hours</em>. If one engineer with AI does what three did last year, a company can hit the same goals with fewer people — nobody's judgment got automated, they simply weren't needed at that headcount.</p>
+      <p>But that story has its own hole, and it's the one that rescued the optimism. It assumes a company only ever wanted last year's output. Almost none do. Companies exist to grow. Hand a growth-hungry team a 10× multiplier and the smart move isn't to fire two-thirds and crawl at the old pace — it's to keep everyone and build ten times more. Cutting to stand still isn't an AI problem; it's a failure of ambition, and blaming the tool is a dodge.</p>
+      <p>And underneath sits a deeper engine. When building software gets cheaper, more of it gets built. Ideas that were "too complicated to bother with" suddenly ship. More people cross from <em>thinking about it</em> to <em>making it</em> — more founders, more small teams, more companies, each needing people to build and run what they started. It's the same pattern we walked through earlier, one level higher.</p>
+      <h2>But don't we just flood the market?</h2>
+      <p>The obvious objection, and I sat with it for a while: if building software gets this cheap, doesn't the world just fill up? Won't we run out of room — or, eventually, out of problems to solve?</p>
+      <p>Two answers — one practical, one deeper.</p>
+      <p>Individual markets <em>do</em> saturate. The world does not need the 500th to-do app, and AI cheerfully cloning it only adds noise. But "software" isn't a category like that — it's a medium, like writing or electricity. And here's the part we forget: <strong>we already have too many apps and nowhere near enough solutions.</strong> Most real problems still run on spreadsheets, email, and duct tape, because custom software was never worth building for them. That's the long tail — millions of small, specific needs nobody ever served. Cheap creation doesn't crowd that; it finally opens it. The room was never in the crowded middle. It's in the underserved tail.</p>
+      <p>The deeper answer is that we never run out of problems. Every solution creates its successor: cars solved distance and created traffic; the internet solved access and created misinformation; AI solves generation and creates verification and trust. And even the rare thing you <em>can</em> finish doesn't finish the work — you can make one program genuinely great, optimal even for exactly what it was asked to do, and the instant it's done the ground moves under it: new hardware, new expectations, a new problem sitting right beside it. You can perfect a <em>thing</em>. You can't perfect the <em>craft</em>. It's the Red Queen effect from biology — you run just to stay in place, because the landscape never stops moving.</p>
+      <p>So the aggregate almost certainly grows. The catch was never the total. It's the distribution.</p>
+      <h2>Who actually gets stung</h2>
+      <p>Not engineers as a class. They're the natural winners here — closest to the technology, fastest to wield it, best able to judge what it produces. Demand for people who can build and steer software goes <em>up</em>.</p>
+      <p>The sting lands in two specific places.</p>
+      <p>The first is <strong>getting in.</strong> The junior work AI now absorbs — the boilerplate, the simple tickets — was the ladder people climbed to become senior. It's a wonderful time to <em>be</em> an experienced engineer and a harder time to <em>become</em> one. The top of the ladder rises while the bottom rungs thin.</p>
+      <p>The second is <strong>standing still</strong> — and not the way you'd expect. Not the person who hand-writes a tricky routine on purpose; that's judgment. I mean the one whose entire value <em>was</em> the mechanical layer AI now does for free, and who won't climb to the judgment it can't reach. Often that isn't stubbornness. It's someone who specialized one level too low, and the ground moved under them. That person deserves respect, not a punchline.</p>
+      <p>Adaptation, it turns out, was never about your keyboard. It's about <em>where you keep your value.</em></p>
+      <h2>What the process actually taught me</h2>
+      <p>I set out to defend a hopeful sentence and spent hours trying to break it. What survived is smaller, sharper, and — I think — actually true:</p>
+      <p>AI is not a mind coming for your seat. It's engineering, all the way down, that eats the patterned and checkable parts of the work and hands the judgment back to you, amplified. It will most likely create more engineering than it destroys — unevenly, with a real cost carried by those trying to break in and those who won't move up.</p>
+      <p>Yuriy was right that a renewing forest doesn't save an individual tree. But that's exactly where the metaphor breaks, because I am not a tree. A tree can't walk toward the new growth. A person can.</p>
+      <p>So you're not one of the old trees waiting for the fire. Keep moving, and you're the ground the whole forest grows from.</p>
+      <p>And there's a quiet joke buried in all of this: the only way I got to a clear answer was to argue every step, refuse every comfortable conclusion, and keep asking <em>what is this, really.</em> Which is the one thing the machine still can't do for me — and the whole reason it can't take the job.</p>
+    </div>
+    <footer class="foot">
+      <a href="index.html">← All writing</a>
+      <span>Souhaib Ben Farhat</span>
+    </footer>
+  </main>
+</body>
+</html>

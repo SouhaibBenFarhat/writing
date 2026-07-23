@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Race Is to the Optimum, Not the Maximum — Souhaib Ben Farhat</title>
+  <meta name="description" content="Thrust SSC, Landauer's limit, and why the fight isn't won by whoever builds the largest data centre." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="site article">
+    <nav class="topnav">
+      <a href="index.html">← Writing</a>
+      <a href="../">Portfolio</a>
+    </nav>
+    <header>
+      <h1>The Race Is to the Optimum, Not the Maximum</h1>
+      <p class="dek">Thrust SSC, Landauer's limit, and why the fight isn't won by whoever builds the largest data centre.</p>
+      <p class="meta">July 23, 2026 · Souhaib Ben Farhat</p>
+    </header>
+    <div class="prose">
+      <p>In October 1997, a jet-powered car called Thrust SSC crossed the Nevada desert at 763 miles per hour, the first vehicle on land to break the sound barrier. It still holds the record, twenty-nine years later. The interesting part isn't the speed, though. It's what the team had to give up to get it.</p>
+      <p>Bugatti ran the more conventional version of the same experiment. The Veyron made 1,001 horsepower and reached 253 miles per hour. The Chiron Super Sport 300+ made 1,578 horsepower and reached 304. Fifty-seven percent more power for twenty percent more speed, and they only got that much because they also stretched the tail by 25 centimetres to cut drag.</p>
+      <p>That's not a failure of engineering, it's the shape of the problem. Drag rises with the square of speed and the power to overcome it rises with the cube, so every extra mile per hour costs more than the one before it. Bugatti eventually capped the Chiron at 261 and left the top-speed race, because by then the limit wasn't the engine at all. It was the tires.</p>
+      <p>Which is why Thrust SSC stopped pretending to be a car. Two afterburning Rolls-Royce Spey turbofans pulled from a fighter jet, fifty thousand pounds of thrust. And no tires, because at 763 mph the wheels turn at 8,500 rpm and the rim pulls 35,000 G, which nothing rubber survives. They machined solid aluminium discs weighing 160 kilos each. The defining component of a car had to be designed out of existence before the barrier would move. Bloodhound has chased 1,000 mph for fourteen years since, with more thrust and more funding. It has reached 628.</p>
+      <p>Strip away the jet fuel and that story is really about energy. Nobody was buying speed; they were buying the energy that speed costs, and once a machine sits near the floor of what physics charges per unit of output, more engine stops helping. Computation has a floor like that too. It's stricter than drag ever was, and the machines we run artificial intelligence on are nowhere near it.</p>
+      <p>Landauer's principle puts a hard thermodynamic floor under computation: erasing a single bit costs at least kT·ln2, around 2.8 × 10⁻²¹ joules. Your brain's computation and communication run on about three watts, which places it at roughly 1.26 times that floor, essentially at the physical limit. The silicon we build artificial intelligence on sits about a billion times above it.</p>
+      <p>So evolution shipped a general intelligence running on twenty watts at the thermodynamic edge, and our answer to a nine-order-of-magnitude gap has been to add engine. Model loss falls as a power law in compute, which means linear gains in capability cost exponential growth in electricity and money, with every doubling buying less than the last. Global data centre demand goes from 104 gigawatts last year to around 132 this year, and the binding constraint is no longer chips but whether the grid can deliver. It's the same curve Bugatti hit.</p>
+      <p>None of this means machine intelligence is impossible. Your brain is sitting right there proving that twenty watts is enough. What the physics rules out is <strong>buying</strong> it with megawatts.</p>
+      <p>Every barrier in this story eventually moved, and not one of them moved because someone fitted a bigger engine. They moved when someone was willing to give up the thing everyone assumed was essential.</p>
+      <p>So I don't think this gets won by whoever builds the largest data centre. I think it gets won by whoever is willing to take the wheels off.</p>
+    </div>
+    <footer class="foot">
+      <a href="index.html">← All writing</a>
+      <span>Souhaib Ben Farhat</span>
+    </footer>
+  </main>
+</body>
+</html>

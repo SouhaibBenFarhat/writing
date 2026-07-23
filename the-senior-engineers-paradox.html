@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Senior Engineer's Paradox — Souhaib Ben Farhat</title>
+  <meta name="description" content="The more senior the room, the fewer facts are left to decide anything — so past a certain level, engineering stops being a technical problem and becomes a social one." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="site article">
+    <nav class="topnav">
+      <a href="index.html">← Writing</a>
+      <a href="../">Portfolio</a>
+    </nav>
+    <header>
+      <h1>The Senior Engineer's Paradox</h1>
+      <p class="dek">The more senior the room, the fewer facts are left to decide anything — so past a certain level, engineering stops being a technical problem and becomes a social one.</p>
+      <p class="meta">July 23, 2026 · Souhaib Ben Farhat</p>
+    </header>
+    <div class="prose">
+      <p>You get promoted for being right. Then one day you're in a room where everyone is right, and nothing moves. Nobody warned you that the ladder you climbed was carrying you <em>out</em> of the part of the job that has answers — and into the part that doesn't.</p>
+      <hr />
+      <h2>I. Seniority is a subtraction machine</h2>
+      <p><strong>The questions with answers get filtered out first</strong></p>
+      <p>Junior work has right answers. Does it compile? Does the test pass? Is this loop O(n) or O(n²)? Did it null-pointer on the empty list? Facts settle all of it. Nobody argues with a crash — you read the trace, you fix the line, the argument is over before it starts.</p>
+      <p>As you climb, those questions get answered and filtered away. What's left at the top is the residue: <strong>should this be a monolith or three services? REST or GraphQL? where does this module's boundary go? is this abstraction paying for itself, or is it just clever?</strong> Read them again — none has a stack trace waiting to end the debate.</p>
+      <p>That's the trick nobody tells you. Seniority doesn't graduate you into <em>harder facts</em>. It graduates you out of facts entirely, into taste. The work that's left over after everything countable has been settled is precisely the work that can't be.</p>
+      <blockquote><p><strong>A stack trace ends an argument. A design review <em>starts</em> one. The difference is the whole essay.</strong></p></blockquote>
+      <h3>Fact vs. Taste</h3>
+      <div class="table-wrap"><table><thead><tr><th>Fact — there is a right answer</th><th>Taste — only agree or disagree</th></tr></thead><tbody><tr><td>the test passes or it doesn't</td><td>monolith vs. microservices</td></tr><tr><td>it's O(n) or O(n²)</td><td>where the module boundary goes</td></tr><tr><td>the endpoint 500s under load</td><td>"is this abstraction worth it"</td></tr><tr><td>the migration dropped the column</td><td>naming, folder structure, style</td></tr><tr><td>it leaks memory or it doesn't</td><td>"does this feel over-engineered"</td></tr></tbody></table></div>
+      <hr />
+      <h2>II. A room where everyone is right</h2>
+      <p><strong>Six defensible tastes and no stack trace to break the tie</strong></p>
+      <p>Put six seniors in a room and watch them disagree — not because one of them is wrong, but because <strong>none of them is</strong>. Six people, six defensible tastes, and no crash to end it. Every captain has a hand on the wheel and every captain is steering true; the ship still doesn't move.</p>
+      <p>This is the paradox in one sentence: <strong>the expertise that makes them senior is exactly what makes them impossible to reconcile by argument.</strong> Add more seniors and you don't converge faster — you diverge harder. Each new expert brings one more fully-loaded, fully-defensible opinion to a question that was never going to be settled by loading more opinions into it.</p>
+      <blockquote><p><strong>Seen in the wild — the 90-minute architecture review</strong>  The reactor gets nodded through; the bike shed gets a holy war. The genuinely hard, high-stakes decision passes fast because few in the room have the facts to challenge it. Then everyone spends an hour on the trivial-but-visible thing — the folder name, the config format — because <em>that</em> one, everyone can have a taste about. The triviality isn't a bug in the meeting. It's where the taste has room to spread.  <em>(Parkinson's Law of Triviality, 1957: a committee waves through a nuclear reactor in minutes, then burns 45 on the color of the bike shed — because everyone owns enough facts to fight about the shed, and nobody owns enough to fight about the reactor.)</em></p></blockquote>
+      <p>It's why the two-pizza team decides and the twelve-person one deliberates. Beyond a certain headcount you're not adding horsepower, you're adding vetoes — each one reasonable, each one true, and collectively enough to stall the whole thing in the harbor.</p>
+      <blockquote><p><strong>A team's ability to <em>decide</em> can go down as its average seniority goes up.</strong></p></blockquote>
+      <hr />
+      <h2>III. Being right was never the lever</h2>
+      <p><strong>You can be provably correct and still lose the team</strong></p>
+      <p>Here's the move that breaks careers. If taste can't be settled by facts, then <strong>winning the argument settles nothing.</strong> You can be provably, gloriously correct and still walk out having lost the room — because on a taste question there was no "correct" to win, only people to bring along, and you spent your energy proving instead of persuading.</p>
+      <p>The senior who mistakes every taste-question for a fact-question becomes the most expensive person on the team. They wield correctness as a weapon. They win the design review and lose the three people who now quietly route around them. Every org has one: brilliant, usually right, and slowly making everyone around them worse.</p>
+      <blockquote><p><strong>The archetype — "right, but alone"</strong>  The strongest teams learned to name this and refuse it: <strong>no brilliant jerks.</strong> Not because the brilliance isn't real — it is — but because the cost of one person treating collaboration as a debate to be won is measured in everyone else's output, and that bill is always larger than the genius. Being right becomes a <em>liability</em> the moment it's the only tool you own.  <em>(In 2018 Linus Torvalds stepped away from Linux maintainership to work on how he talks to people. Decades of being technically right had a body count of burned-out contributors. Right, it turned out, was not the same as effective.)</em></p></blockquote>
+      <p>At this altitude the only currency that spends is influence: getting people to <em>want</em> your idea, not proving they must accept it. And those are different skills — one you were rewarded for the whole way up, the other nobody taught you, because for nine years you didn't need it.</p>
+      <hr />
+      <h2>IV. The master skill</h2>
+      <p><strong>Know which half of the room you're standing in</strong></p>
+      <p>Every decision on the table is one of two kinds, and the entire skill is telling them apart in real time:</p>
+      <p>- <strong>Fact.</strong> There is a right answer. This is a security hole, a data-loss bug, a race condition. Challenge hard, bring the evidence, and do <em>not</em> let it slide to keep the peace. The stack trace is on your side; use it. - <strong>Taste.</strong> There is only agree or disagree. This is the folder layout, the naming, the shape of an abstraction reasonable people will never fully agree on. Make your case once — then let someone own it and <em>move</em>. Dying on this hill costs you the credibility you'll need on the next hill that actually has a summit.</p>
+      <p>Great engineers switch modes in seconds. Mediocre ones run every question through the fact protocol — treating a taste disagreement as a thing to be proven — and turn a one-hour design review into a war of attrition nobody wins. The tell: <strong>is this countable, or is this opinion?</strong> Ask it before you open your mouth. Half the fights on a senior team are just two people who never checked which half they were in.</p>
+      <blockquote><p><strong>Two protocols worth internalizing</strong>  - <strong>Chesterton's Fence</strong> — don't tear down what you don't yet understand. - <strong>Disagree &amp; commit</strong> — the protocol for taste: argue hard, then row the boat even if you lost the vote.</p></blockquote>
+      <hr />
+      <h2>V. The part that stings</h2>
+      <p><strong>If the only way you can move the team is by being right, you've already lost the job</strong></p>
+      <p>Leadership at this level is carrying ideas by influence, not authority — and the best in the craft built a whole culture around admitting it. The design doc, the RFC, the proposal circulated for comment: these aren't bureaucracy. They're the senior engineer saying, out loud, <em>I am going to win this on persuasion, in the open, and I am inviting you to try to break it.</em> The strongest technical leaders you know move through documents and conversations, not commits. Their leverage stopped being their own keyboard a long time ago.</p>
+      <blockquote><p><strong>RFC</strong> = <em>Request For Comments.</em> The dominant format for serious technical decisions is literally named after asking to be challenged. That's not humility theater — it's the influence protocol written down.</p></blockquote>
+      <p>So here's the one that stings. If the only way you can move the team is by being the loudest fact in the room — if you can't get people to pick up an idea and make it their own — <strong>you're not leading. You're just winning.</strong> And winning is failing the actual job, because the job stopped being "be right" around the same promotion that carried you out of the land of stack traces.</p>
+      <p>The paradox has a cruel symmetry to it: the skill that got you here is the one you now have to put down. Not because it stopped being valuable — a senior who can't tell a real bug from a taste is useless — but because it stopped being <em>enough</em>. You were promoted into the unsolvable half of the work, and nobody hands you a new manual at the door.</p>
+      <hr />
+      <p><strong>The best teams aren't the ones with the most right answers. They're the ones who know <em>when the right answer stopped mattering.</strong></em></p>
+      <p><em>// fact → taste · the line runs down the middle of every senior room</em></p>
+    </div>
+    <footer class="foot">
+      <a href="index.html">← All writing</a>
+      <span>Souhaib Ben Farhat</span>
+    </footer>
+  </main>
+</body>
+</html>
